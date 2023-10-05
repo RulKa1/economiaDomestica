@@ -1,0 +1,44 @@
+body {
+
+    background-color: rgb(8, 8, 8);
+}
+h1{
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    margin-top: 5%;
+
+
+}
+img{
+    width: 200px;
+    height: 200px;
+    border: 3px double white;
+}
+#gastosCasa1{
+    margin-top: 5%;
+    margin-left: 21%;
+
+}
+#gastosCasa2{
+    margin-top: 5%;
+    margin-left: 21%;
+
+}
+#resultado{
+    background-color: white;
+    text-align: center;
+    margin-left: 22%;
+    margin-right: 23%;
+    margin-top: 1%;
+
+}
+.gasto{
+    margin-left: 15px;
+    transform: scale(var(--escala, 1));
+    transition: transform 0.25s;
+  }
+  .gasto:hover{
+    --escala: 1.1;
+    cursor:pointer;
+  }
