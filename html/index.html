@@ -3,34 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestor de Gastos Domesticos</title>
+    <title>Economia Domestica</title>
     <script src="/js/js.js"></script>
     <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="icon" href="../img/icono2.jpg">
+
+
 </head>
-  <body onload="arrayGastosDomesticos()">
+  <body onload="creandoArrayGastos()">
     
-    <div class="bordes-rojos">
+    <div class="encabezado">
       <h1>Registro Gastos Datos De la Vivienda</h1>      </div>
     <div id="gastosCasa1">
-     <img src="../img/luz.jpeg" class="gasto" alt="luz" >   
-     <img src="../img/agua.jpeg" class="gasto" alt="agua">   
-     <img src="../img/fruta.jpeg" class="gasto" alt="fruta">   
-     <img src="../img/atencion sanitaria.jpeg" class="gasto" alt="medicos">   
-     <img src="../img/coche.jpeg" class="gasto" alt="transp
-     orte">   
+        <img src="../img/luz.jpg" class="gasto" alt="Luz"  onclick="hacerGastos(this,30)"/>
+     <img src="../img/agua.jpg" class="gasto" alt="Agua"  onclick="hacerGastos(this,10)"/>  
+     <img src="../img/fruta.jpg" class="gasto" alt="Fruta"  onclick="hacerGastos(this,15)"/> 
+     <img src="../img/medico.jpg" class="gasto" alt="Medicos"  onclick="hacerGastos(this,15)"/>  
+     <img src="../img/coche.jpg" class="gasto" alt="Transporte" onclick="hacerGastos(this,200)"/>     
     </div>
     <div id="gastosCasa2">
-    <img src="../img/telefono.jpeg" class="gasto" alt="telefono">   
-    <img src="../img/colegio.jpeg" class="gasto" alt="colegio">   
-    <img src="../img/internet.jpeg" class="gasto" alt="internet">   
-    <img src="../img/vecinos.jpeg" class="gasto" alt="comunidad">   
-    <img src="../img/Netflix.png" class="gasto" alt="Netflix">   
+    <img src="../img/telefono.jpg" class="gasto" alt="Telefono"  onclick="hacerGastos(this,45)"/>   
+    <img src="../img/colegio.jpg" class="gasto" alt="Colegio"  onclick="hacerGastos(this,365)"/>   
+    <img src="../img/internet.jpg" class="gasto" alt="Internet"  onclick="hacerGastos(this,69)"/>    
+    <img src="../img/comunidad.jpg" class="gasto" alt="Comunidad de Vecinos"  onclick="hacerGastos(this,105)"/>    
+    <img src="../img/netflix.jpg" class="gasto" alt="Netflix"  onclick="hacerGastos(this,15)"/>   
     </div>
-    <div id="resultado">
-        <button onclick="">Comprobar Los Gastos</button>
-        <hr>
+    <div class="" id="realizar">
+      <button class="button" onclick="mostrarGastos()">Mi Botón</button>
 
-
+      <hr>
+      <p name="gastando"  id="resultado"></p>
     </div>
     
     

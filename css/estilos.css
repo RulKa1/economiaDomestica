@@ -1,6 +1,12 @@
 body {
+  border-left: 55px solid rgb(85, 78, 78);
+    
+  border-right: 55px solid rgb(85, 78, 78);
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(45deg, white, grey);
 
-    background-color: rgb(8, 8, 8);
+  color: white;
 }
 
 
@@ -9,14 +15,16 @@ img{
     height: 200px;
     border: 3px double white;
 }
+
 #gastosCasa1{
-    margin-top: 5%;
-    margin-left: 21%;
+    margin-top: 1%;
+    margin-left: 18%;
 
 }
 #gastosCasa2{
-    margin-top: 5%;
-    margin-left: 21%;
+    margin-top: 1%;
+    margin-left: 18%;
+    margin-bottom: 1%;
 
 }
 #resultado{
@@ -36,17 +44,46 @@ img{
     --escala: 1.1;
     cursor:pointer;
   }
-  .bordes-rojos {
-    background-color: #f2f2f2;
+  .encabezado {
+    background-color: rgb(3, 16, 22);
     font-family: Georgia, 'Times New Roman', Times, serif;
     text-align: center;
 
-    border-left: 5px solid red;
-    
-    border-right: 5px solid red;
+
     
     padding: 20px;
-  }
+  } 
   p{
     color: white;
   }
+  #realizar {
+    text-align: center;
+    background-color: white;
+    
+  }
+  #resultado{
+    margin-top: 1%;
+    color: black;
+    width: 500px;
+    height: 250px;
+    margin-left: 36%;
+    
+  }
+  .button {
+    margin-top: 10px;
+    width: 200px; 
+ 
+    background-color: black; 
+    color: white; 
+    padding: 14px 20px; 
+    text-align: center; 
+    text-decoration: none; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 16px; 
+}
+
+.button:hover {
+    background-color: red; 
+}
