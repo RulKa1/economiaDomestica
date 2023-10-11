@@ -51,6 +51,7 @@ function mostrarGastos() {
     }
   });
 
+
   resultado.innerText = mostrarGastos + "\n" + "Cantidad Media:" + gasto / GastosRealizadas + "€" + "\n" + "Cantidad Final: " + gasto + " € ";
 
   console.log(mostrarGastos);

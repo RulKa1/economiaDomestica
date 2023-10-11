@@ -85,5 +85,38 @@ img{
 }
 
 .button:hover {
-    background-color: red; 
+    background-color: #0161a1; 
+}
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.fondo-animado {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #0161a1, #070707, #0161a1, #070707, #0161a1, #070707, #0161a1);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.contenido {
+  position: relative;
+
 }

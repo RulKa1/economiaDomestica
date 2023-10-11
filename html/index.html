@@ -11,30 +11,32 @@
 
 </head>
   <body onload="creandoArrayGastos()">
-    
+    <div class="fondo-animado"></div>
+    <div class="contenido">
     <div class="encabezado">
       <h1>Registro Gastos Datos De la Vivienda</h1>      </div>
-    <div id="gastosCasa1">
-        <img src="../img/luz.jpg" class="gasto" alt="Luz"  onclick="hacerGastos(this,30)"/>
-     <img src="../img/agua.jpg" class="gasto" alt="Agua"  onclick="hacerGastos(this,10)"/>  
-     <img src="../img/fruta.jpg" class="gasto" alt="Fruta"  onclick="hacerGastos(this,15)"/> 
-     <img src="../img/medico.jpg" class="gasto" alt="Medicos"  onclick="hacerGastos(this,15)"/>  
-     <img src="../img/coche.jpg" class="gasto" alt="Transporte" onclick="hacerGastos(this,200)"/>     
-    </div>
-    <div id="gastosCasa2">
-    <img src="../img/telefono.jpg" class="gasto" alt="Telefono"  onclick="hacerGastos(this,45)"/>   
-    <img src="../img/colegio.jpg" class="gasto" alt="Colegio"  onclick="hacerGastos(this,365)"/>   
-    <img src="../img/internet.jpg" class="gasto" alt="Internet"  onclick="hacerGastos(this,69)"/>    
-    <img src="../img/comunidad.jpg" class="gasto" alt="Comunidad de Vecinos"  onclick="hacerGastos(this,105)"/>    
-    <img src="../img/netflix.jpg" class="gasto" alt="Netflix"  onclick="hacerGastos(this,15)"/>   
-    </div>
+      <div id="gastosCasa1">
+        <img src="../img/luz.jpg" class="gasto" alt="Luz"  onclick="hacerGastos(this,30)" title="El precio de la Luz es de 30 € "/>
+        <img src="../img/agua.jpg" class="gasto" alt="Agua"  onclick="hacerGastos(this,10)" title="El precio de el Agua es de 10 €"/>  
+        <img src="../img/fruta.jpg" class="gasto" alt="Fruta"  onclick="hacerGastos(this,15)" title="El precio de la Fruta es de 15 €"/> 
+        <img src="../img/medico.jpg" class="gasto" alt="Medicos"  onclick="hacerGastos(this,15)" title="El precio de las Medicinas es de 15 €"/>  
+        <img src="../img/coche.jpg" class="gasto" alt="Transporte" onclick="hacerGastos(this,200)" title="El precio de la Gasolina es de 200 €"/>     
+      </div>
+      <div id="gastosCasa2">
+        <img src="../img/telefono.jpg" class="gasto" alt="Telefono"  onclick="hacerGastos(this,45)" title="El precio de la linea Movil es de 45 €"/>   
+        <img src="../img/colegio.jpg" class="gasto" alt="Colegio"  onclick="hacerGastos(this,365)" title="El precio de el Colegio es de 365 €"/>   
+        <img src="../img/internet.jpg" class="gasto" alt="Internet"  onclick="hacerGastos(this,69)" title="El precio de el Internet es de 69 €"/>    
+        <img src="../img/comunidad.jpg" class="gasto" alt="Comunidad de Vecinos"  onclick="hacerGastos(this,105)" title="El precio de la comunidad es de 105 €"/>    
+        <img src="../img/netflix.jpg" class="gasto" alt="Netflix"  onclick="hacerGastos(this,15)" title="El precio de la subscripcion a Netflix es de 15 €"/>   
+      </div>
+      
     <div class="" id="realizar">
-      <button class="button" onclick="mostrarGastos()">Mi Botón</button>
+      <button class="button" onclick="mostrarGastos()">Realizar Gastos</button>
 
       <hr>
       <p name="gastando"  id="resultado"></p>
     </div>
-    
+    </div>
     
 </body>
 </html>
