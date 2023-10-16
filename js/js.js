@@ -27,12 +27,6 @@ function limpiarResultado() {
   let resultado = document.getElementById("resultado");
   resultado.innerText = "";
 }
-function reiniciar() {
-  gasto = 0;
-  arrayGastos = [];
-  tiposDeGastos = [];
-  creandoArrayGastos();
-  }
 function mostrarGastos() {
   let resultado = document.getElementById("resultado");
   let mostrarGastos = "";
@@ -59,4 +53,11 @@ function mostrarGastos() {
   console.log(tiposDeGastos);
   console.log(gasto);
   reiniciar();
+  
+  function reiniciar() {
+    gasto = 0;
+    arrayGastos = [];
+    tiposDeGastos = [];
+    creandoArrayGastos();
+    }
 }
