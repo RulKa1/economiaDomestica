@@ -2,37 +2,41 @@
 var arrayGastos = [];
 var tiposDeGastos = [];
 var gasto = 0;
+
 function creandoArrayGastos() {
-let gastos = Array.from(document.getElementsByTagName("img"));
-gastos.forEach((element) => { arrayGastos.push(element.alt); tiposDeGastos.push(0);
-  }
-  );
+  let gastos = Array.from(document.getElementsByTagName("img"));
+  gastos.forEach((element) => {
+    arrayGastos.push(element.alt);
+    tiposDeGastos.push(0);
+  });
   arrayGastos.sort();
   arrayGastos.reverse();
-  console.log(arrayGastos);
 }
+
 function hacerGastos(tipo, precio) {
-let creandoGasto = arrayGastos.findIndex((palabra) => palabra === tipo.alt);
-tiposDeGastos[creandoGasto] += 1;
-gasto1(precio);
-console.log(arrayGastos);
-console.log(tiposDeGastos);
-console.log(gasto);
-limpiarResultado();
+  let creandoGasto = arrayGastos.findIndex((palabra) => palabra === tipo.alt);
+  tiposDeGastos[creandoGasto] += 1;
+  gasto1(precio);
+
+  limpiarResultado();
 }
+
 function gasto1(gastando) {
-gasto += gastando;
+  gasto += gastando;
 }
+
 function limpiarResultado() {
   let resultado = document.getElementById("resultado");
   resultado.innerText = "";
 }
+
 function reiniciar() {
   gasto = 0;
   arrayGastos = [];
   tiposDeGastos = [];
   creandoArrayGastos();
-  }
+}
+
 function mostrarGastos() {
   let resultado = document.getElementById("resultado");
   let mostrarGastos = "";
@@ -46,7 +50,7 @@ function mostrarGastos() {
     let cuota = tiposDeGastos[index];
 
     if (cuota !== 0) {
-      mostrarGastos +=   cuota + "  Cuota/s de " + element + "\n"  ;
+      mostrarGastos += cuota + "  Cuota/s de " + element + "\n";
       GastosRealizadas += cuota;
     }
   });
@@ -54,9 +58,6 @@ function mostrarGastos() {
 
   resultado.innerText = mostrarGastos + "\n" + "Cantidad Media:" + gasto / GastosRealizadas + "€" + "\n" + "Cantidad Final: " + gasto + " € ";
 
-  console.log(mostrarGastos);
-  console.log(arrayGastos);
-  console.log(tiposDeGastos);
-  console.log(gasto);
+
   reiniciar();
 }
