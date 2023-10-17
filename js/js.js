@@ -29,7 +29,6 @@ function limpiarResultado() {
   let resultado = document.getElementById("resultado");
   resultado.innerText = "";
 }
-<<<<<<< HEAD
 
 function reiniciar() {
   gasto = 0;
@@ -38,8 +37,6 @@ function reiniciar() {
   creandoArrayGastos();
 }
 
-=======
->>>>>>> ec914ba0a892dec56a0542dab0ed17f8114732eb
 function mostrarGastos() {
   let resultado = document.getElementById("resultado");
   let mostrarGastos = "";
@@ -63,15 +60,4 @@ function mostrarGastos() {
 
 
   reiniciar();
-<<<<<<< HEAD
 }
-=======
-  
-  function reiniciar() {
-    gasto = 0;
-    arrayGastos = [];
-    tiposDeGastos = [];
-    creandoArrayGastos();
-    }
-}
->>>>>>> ec914ba0a892dec56a0542dab0ed17f8114732eb
