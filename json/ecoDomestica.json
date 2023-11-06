@@ -1,0 +1,64 @@
+{
+    "conceptos": [
+        {
+            "id": 1,
+            "nombre": "Luz",
+            "imprescindible": true,
+            "categoria": "S_BAS"
+        },
+        {
+            "id": 2,
+            "nombre": "Agua",
+            "imprescindible": true,
+            "categoria": "S_BAS"
+        },
+        {
+            "id": 3,
+            "nombre": "Pinchos",
+            "imprescindible": false,
+            "categoria": "OC"
+        },
+        {
+            "id": 4,
+            "nombre": "Fruta",
+            "imprescindible": true,
+            "categoria": "ALI"
+        },
+        {
+            "id": 5,
+            "nombre": "Gimnasio",
+            "imprescindible": false,
+            "categoria": "DEP"
+        },
+        {
+            "id": 6,
+            "nombre": "Plataformas",
+            "imprescindible": false,
+            "categoria": "OC"
+        },
+        {
+            "id": 7,
+            "nombre": "Libros",
+            "imprescindible": false,
+            "categoria": "CULT"
+        }
+    ],
+    "registros": [
+        {
+            "id": 1,
+            "fecha": "05/2023",
+            "pagos": [
+                {
+                    "idConcepto": 7,
+                    "importeTotal": 45.78,
+                    "numPagos": 5
+                },
+                {
+                    "idConcepto": 2,
+                    "importeTotal": 37.23,
+                    "numPagos": 3
+                }
+            ]
+        }
+    ]
+}
