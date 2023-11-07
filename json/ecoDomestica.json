@@ -4,61 +4,79 @@
             "id": 1,
             "nombre": "Luz",
             "imprescindible": true,
-            "categoria": "S_BAS"
+            "categoria": "S_BAS",
+            "pagos": []
         },
         {
             "id": 2,
             "nombre": "Agua",
             "imprescindible": true,
-            "categoria": "S_BAS"
+            "categoria": "S_BAS",
+            "pagos": []
         },
         {
             "id": 3,
-            "nombre": "Pinchos",
+            "nombre": "Fruta",
             "imprescindible": false,
-            "categoria": "OC"
+            "categoria": "ALI",
+            "pagos": []
         },
         {
             "id": 4,
-            "nombre": "Fruta",
+            "nombre": "Medicos",
             "imprescindible": true,
-            "categoria": "ALI"
+            "categoria": "DEP",
+            "pagos": []
         },
+      
         {
             "id": 5,
-            "nombre": "Gimnasio",
+            "nombre": "Transporte",
             "imprescindible": false,
-            "categoria": "DEP"
+            "categoria": "S_BAS",
+            "pagos": []
         },
         {
             "id": 6,
-            "nombre": "Plataformas",
-            "imprescindible": false,
-            "categoria": "OC"
+            "nombre": "Telefono",
+            "imprescindible": true,
+            "categoria": "S_BAS",
+            "pagos": []
         },
         {
             "id": 7,
-            "nombre": "Libros",
+            "nombre": "Colegio",
+            "imprescindible": true,
+            "categoria": "CULT",
+            "pagos": []
+        },
+        {
+            "id": 8,
+            "nombre": "Internet",
             "imprescindible": false,
-            "categoria": "CULT"
+            "categoria": "CULT",
+            "pagos": []
+        },
+        {
+            "id": 9,
+            "nombre": "Comunidad de Vecinos",
+            "imprescindible": true,
+            "categoria": "S_BAS",
+            "pagos": []
+        },
+        {
+            "id": 10,
+            "nombre": "Netflix",
+            "imprescindible": false,
+            "categoria": "OC",
+            "pagos": []
         }
     ],
     "registros": [
         {
             "id": 1,
-            "fecha": "05/2023",
-            "pagos": [
-                {
-                    "idConcepto": 7,
-                    "importeTotal": 45.78,
-                    "numPagos": 5
-                },
-                {
-                    "idConcepto": 2,
-                    "importeTotal": 37.23,
-                    "numPagos": 3
-                }
-            ]
+            "fecha": "FECHA_GENERADA_POR_LA_MAQUINA",
+            "pagos": []
         }
     ]
 }
