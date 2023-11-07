@@ -61,3 +61,44 @@ function mostrarGastos() {
 
   reiniciar();
 }
+var arrayGastos = ["Luz", "Agua", "Fruta", "Medicos", "Transporte", "Telefono", "Colegio", "Internet", "Comunidad de Vecinos", "Netflix"];
+var tiposDeGastos = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var gastoTotal = 0;
+
+function hacerGastos(tipo, precio) {
+  // Solicitar al usuario el importe del pago mediante un prompt
+  var cantidad = prompt("Ingrese el importe del pago para " + tipo.alt + " en €:");
+  
+  // Verificar si la cantidad ingresada es un número válido y mayor a cero
+  if (cantidad !== null && !isNaN(parseFloat(cantidad)) && parseFloat(cantidad) > 0) {
+    // Convertir la cantidad a número y realizar el pago
+    cantidad = parseFloat(cantidad);
+    var index = arrayGastos.indexOf(tipo.alt);
+    tiposDeGastos[index] += cantidad;
+    gastoTotal += cantidad;
+    actualizarVisualizacion();
+  } else {
+    // Mostrar un mensaje si la cantidad ingresada no es válida
+    alert("Por favor, ingrese un importe válido mayor a cero.");
+  }
+}
+
+function actualizarVisualizacion() {
+  let resultado = document.getElementById("resultado");
+  let detallePagos = document.getElementById("detallePagos");
+  resultado.innerText = "Cantidad Total: " + gastoTotal + " €";
+
+  let detalleHtml = "";
+  arrayGastos.forEach((concepto, index) => {
+    let cantidad = tiposDeGastos[index];
+    if (cantidad > 0) {
+      detalleHtml += concepto + ": " + cantidad + "€<br>";
+    }
+  });
+  detallePagos.innerHTML = detalleHtml;
+}
+
+function mostrarGastos() {
+  // Lógica para mostrar los gastos realizados
+  // ...
+}
