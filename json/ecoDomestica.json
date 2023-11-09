@@ -4,79 +4,81 @@
             "id": 1,
             "nombre": "Luz",
             "imprescindible": true,
-            "categoria": "S_BAS",
-            "pagos": []
+            "categoria": "S_BAS"
+         
         },
         {
             "id": 2,
             "nombre": "Agua",
             "imprescindible": true,
-            "categoria": "S_BAS",
-            "pagos": []
+            "categoria": "S_BAS"
         },
         {
             "id": 3,
             "nombre": "Fruta",
             "imprescindible": false,
-            "categoria": "ALI",
-            "pagos": []
+            "categoria": "ALI"
         },
         {
             "id": 4,
             "nombre": "Medicos",
             "imprescindible": true,
-            "categoria": "DEP",
-            "pagos": []
+            "categoria": "DEP"
         },
       
         {
             "id": 5,
             "nombre": "Transporte",
             "imprescindible": false,
-            "categoria": "S_BAS",
-            "pagos": []
+            "categoria": "S_BAS"
         },
         {
             "id": 6,
             "nombre": "Telefono",
             "imprescindible": true,
-            "categoria": "S_BAS",
-            "pagos": []
+            "categoria": "S_BAS"
         },
         {
             "id": 7,
             "nombre": "Colegio",
             "imprescindible": true,
-            "categoria": "CULT",
-            "pagos": []
+            "categoria": "CULT"
         },
         {
             "id": 8,
             "nombre": "Internet",
             "imprescindible": false,
-            "categoria": "CULT",
-            "pagos": []
+            "categoria": "CULT"
         },
         {
             "id": 9,
             "nombre": "Comunidad de Vecinos",
             "imprescindible": true,
-            "categoria": "S_BAS",
-            "pagos": []
+            "categoria": "S_BAS"
         },
         {
             "id": 10,
             "nombre": "Netflix",
             "imprescindible": false,
-            "categoria": "OC",
-            "pagos": []
+            "categoria": "OC"
         }
     ],
     "registros": [
         {
             "id": 1,
-            "fecha": "FECHA_GENERADA_POR_LA_MAQUINA",
-            "pagos": []
+            "fecha": "05/2023",
+            "pagos": [
+                {
+                    "idConcepto": 7,
+                    "importeTotal": 45.78,
+                    "numPagos": 5
+                },
+                {
+                    "idConcepto": 2,
+                    "importeTotal": 37.23,
+                    "numPagos": 3
+                }
+            ]
         }
     ]
 }

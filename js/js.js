@@ -7,19 +7,80 @@ function creandoArrayGastos() {
   let gastos = Array.from(document.getElementsByTagName("img"));
   gastos.forEach((element) => {
     arrayGastos.push(element.alt);
-    tiposDeGastos.push(0);
+    tiposDeGastos.push(0);  
   });
   arrayGastos.sort();
   arrayGastos.reverse();
 }
+function peticionGetJson(nombreConcepto, precio) {
 
+  const url = 'http://localhost:3000/conceptos';
+
+  const options = {
+    method: "GET"
+  };
+fetch(url, options)
+  .then(response => {
+    console.log(response.json());
+    console.log(response);
+  })
+  .then(data => {
+    console.log('Datos recibidos:', data); // Muestra los datos recibidos del servidor en la consola
+  })
+  .catch(error => {
+    console.error('Error:', error); // Maneja los errores si la solicitud no se completa correctamente
+  });
+
+  
+}
+function peticionPostJson(endPoint , precio) {
+   // URL a la que quieres enviar la solicitud POST
+const url = 'http://localhost:3000' + endPoint;
+
+// Datos que deseas enviar en la solicitud POST (pueden ser un objeto o un formulario serializado)
+
+// Configuración de la solicitud
+const opciones = {
+  method: 'POST', // Método de la solicitud
+  headers: {
+    'Content-Type': 'application/json' // Tipo de contenido que estás enviando (en este caso, JSON)
+  },
+  body: JSON.stringify(end) // Convierte el objeto de datos a formato JSON
+};
+
+// Realiza la solicitud Fetch
+fetch(url, opciones)
+  .then(response => response.json()) // Parsea la respuesta a JSON
+  .then(data => {
+    console.log('Respuesta del servidor:', data); // Muestra la respuesta del servidor en la consola
+  })
+  .catch(error => {
+    console.error('Error:', error); // Maneja los errores si la solicitud no se completa correctamente
+  });
+  
+}
 function hacerGastos(tipo, precio) {
-  let creandoGasto = arrayGastos.findIndex((palabra) => palabra === tipo.alt);
-  tiposDeGastos[creandoGasto] += 1;
-  gasto1(precio);
-
+ var precio = prompt("Ingrese el importe del pago para " + tipo.alt + " en €:");
+  
+  if (precio !== null && !isNaN(parseFloat(precio)) && parseFloat(precio) > 0) {
+    precio = parseFloat(precio);
+    let creandoGasto = arrayGastos.findIndex((palabra) => palabra === tipo.alt);
+    peticionGetJson(tipo.alt, precio);
+    tiposDeGastos[creandoGasto] += 1;
+    gasto1(precio);
+  } else {
+    alert("Por favor, ingrese un importe válido mayor a cero.");
+  }
   limpiarResultado();
 }
+// function hacerGastos(tipo, precio) {
+//   let creandoGasto = arrayGastos.findIndex((palabra) => palabra === tipo.alt);
+//   tiposDeGastos[creandoGasto] += 1;
+//   gasto1(precio);
+
+//   limpiarResultado();
+// }
+
 
 function gasto1(gastando) {
   gasto += gastando;
@@ -56,49 +117,8 @@ function mostrarGastos() {
   });
 
 
-  resultado.innerText = mostrarGastos + "\n" + "Cantidad Media:" + gasto / GastosRealizadas + "€" + "\n" + "Cantidad Final: " + gasto + " € ";
+  resultado.innerText = mostrarGastos + "\n" + "precio Media:" + gasto / GastosRealizadas + "€" + "\n" + "precio Final: " + gasto + " € ";
 
 
   reiniciar();
-}
-var arrayGastos = ["Luz", "Agua", "Fruta", "Medicos", "Transporte", "Telefono", "Colegio", "Internet", "Comunidad de Vecinos", "Netflix"];
-var tiposDeGastos = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-var gastoTotal = 0;
-
-function hacerGastos(tipo, precio) {
-  // Solicitar al usuario el importe del pago mediante un prompt
-  var cantidad = prompt("Ingrese el importe del pago para " + tipo.alt + " en €:");
-  
-  // Verificar si la cantidad ingresada es un número válido y mayor a cero
-  if (cantidad !== null && !isNaN(parseFloat(cantidad)) && parseFloat(cantidad) > 0) {
-    // Convertir la cantidad a número y realizar el pago
-    cantidad = parseFloat(cantidad);
-    var index = arrayGastos.indexOf(tipo.alt);
-    tiposDeGastos[index] += cantidad;
-    gastoTotal += cantidad;
-    actualizarVisualizacion();
-  } else {
-    // Mostrar un mensaje si la cantidad ingresada no es válida
-    alert("Por favor, ingrese un importe válido mayor a cero.");
-  }
-}
-
-function actualizarVisualizacion() {
-  let resultado = document.getElementById("resultado");
-  let detallePagos = document.getElementById("detallePagos");
-  resultado.innerText = "Cantidad Total: " + gastoTotal + " €";
-
-  let detalleHtml = "";
-  arrayGastos.forEach((concepto, index) => {
-    let cantidad = tiposDeGastos[index];
-    if (cantidad > 0) {
-      detalleHtml += concepto + ": " + cantidad + "€<br>";
-    }
-  });
-  detallePagos.innerHTML = detalleHtml;
-}
-
-function mostrarGastos() {
-  // Lógica para mostrar los gastos realizados
-  // ...
 }
