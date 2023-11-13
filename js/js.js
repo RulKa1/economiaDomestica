@@ -60,10 +60,14 @@ fetch(url, opciones)
   
 }
 function hacerGastos(tipo, precio) {
- var precio = prompt("Ingrese el importe del pago para " + tipo.alt + " en €:");
+  var precio = prompt("Ingrese el importe del pago para " + tipo.alt + " en €:");
   
   if (precio !== null && !isNaN(parseFloat(precio)) && parseFloat(precio) > 0) {
     precio = parseFloat(precio);
+
+    // Llamada a la nueva función para mostrar el precio en el div
+    mostrarPrecioEnDiv(precio);
+
     let creandoGasto = arrayGastos.findIndex((palabra) => palabra === tipo.alt);
     peticionGetJson(tipo.alt, precio);
     tiposDeGastos[creandoGasto] += 1;
@@ -73,13 +77,13 @@ function hacerGastos(tipo, precio) {
   }
   limpiarResultado();
 }
-// function hacerGastos(tipo, precio) {
-//   let creandoGasto = arrayGastos.findIndex((palabra) => palabra === tipo.alt);
-//   tiposDeGastos[creandoGasto] += 1;
-//   gasto1(precio);
+function mostrarPrecioEnDiv(precio) {
+  // Obtén el div donde quieres mostrar el precio
+  const divPrecio = document.getElementById("divAvisos");
 
-//   limpiarResultado();
-// }
+  // Agrega el nuevo precio al contenido existente del div
+  divPrecio.innerHTML += "Precio ingresado: " + precio + "€<br>";
+}
 
 
 function gasto1(gastando) {
@@ -111,14 +115,14 @@ function mostrarGastos() {
     let cuota = tiposDeGastos[index];
 
     if (cuota !== 0) {
-      mostrarGastos += cuota + "  Cuota/s de " + element + "\n";
+      // Updated the format for displaying expenses
+      mostrarGastos += `${element} ---- ${cuota} pago${cuota > 1 ? "s" : ""} ---- ${gasto1(cuota)}€\n`;
       GastosRealizadas += cuota;
     }
   });
 
-
-  resultado.innerText = mostrarGastos + "\n" + "precio Media:" + gasto / GastosRealizadas + "€" + "\n" + "precio Final: " + gasto + " € ";
-
+  // Updated the format for displaying the final and average expenses
+  resultado.innerText = mostrarGastos + "\n" + `Gasto final: ${gasto}€\n` + `Gasto medio: ${gasto / GastosRealizadas}€/concept`;
 
   reiniciar();
 }
