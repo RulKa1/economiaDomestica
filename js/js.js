@@ -13,49 +13,44 @@ function creandoArrayGastos() {
   arrayGastos.reverse();
 }
 function peticionGetJson(nombreConcepto, precio) {
-
   const url = 'http://localhost:3000/conceptos';
 
   const options = {
     method: "GET"
   };
-fetch(url, options)
-  .then(response => {
-    console.log(response.json());
-    console.log(response);
-  })
-  .then(data => {
-    console.log('Datos recibidos:', data); // Muestra los datos recibidos del servidor en la consola
-  })
-  .catch(error => {
-    console.error('Error:', error); // Maneja los errores si la solicitud no se completa correctamente
-  });
 
-  
+  fetch(url, options)
+    .then(response => response.json())
+    .then(data => {
+      console.log('Precio recibido:', precio); // Muestra el precio recibido del servidor en la consola
+    })
+    .catch(error => {
+      console.error('Error:', error); // Maneja los errores si la solicitud no se completa correctamente
+    });
 }
 function peticionPostJson(endPoint , precio) {
    // URL a la que quieres enviar la solicitud POST
 const url = 'http://localhost:3000' + endPoint;
 
-// Datos que deseas enviar en la solicitud POST (pueden ser un objeto o un formulario serializado)
 
-// Configuración de la solicitud
+
+
 const opciones = {
-  method: 'POST', // Método de la solicitud
+  method: 'POST', 
   headers: {
-    'Content-Type': 'application/json' // Tipo de contenido que estás enviando (en este caso, JSON)
+    'Content-Type': 'application/json' 
   },
-  body: JSON.stringify(end) // Convierte el objeto de datos a formato JSON
+  body: JSON.stringify(end) 
 };
 
-// Realiza la solicitud Fetch
+
 fetch(url, opciones)
-  .then(response => response.json()) // Parsea la respuesta a JSON
+  .then(response => response.json()) 
   .then(data => {
-    console.log('Respuesta del servidor:', data); // Muestra la respuesta del servidor en la consola
+    console.log('Respuesta del servidor:', data); 
   })
   .catch(error => {
-    console.error('Error:', error); // Maneja los errores si la solicitud no se completa correctamente
+    console.error('Error:', error); 
   });
   
 }
