@@ -122,3 +122,11 @@ h3{
   overflow: hidden;
   color: black;
 }
+.resaltado {
+  background-color: red; 
+  color: black;
+  font-size: 20px; 
+  font-weight: bold; 
+
+
+}
