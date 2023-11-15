@@ -77,7 +77,7 @@ function hacerGastos(tipo, precio) {
 
 function mostrarPrecioEnDiv(tipo, precio) {
   const divPrecio = document.getElementById("divAvisos");
-  const tipoClase = tipo.replace(/\s+/g, '_');
+  const tipoClase = tipo.replace();
 
   if (ultimoConcepto) {
     divPrecio.querySelectorAll(`.${ultimoConcepto}`).forEach(el => {
@@ -92,7 +92,6 @@ function mostrarPrecioEnDiv(tipo, precio) {
 
   divPrecio.querySelectorAll(`.${tipoClase}`).forEach(el => {
     el.classList.add('resaltado');
-    setTimeout(limpiarInformacion, 10000);
 
   });
   ultimoConcepto = tipoClase;
@@ -121,43 +120,33 @@ function mostrarGastos() {
   let mostrarGastosTexto = "";
   let gastoTotal = 0;
 
-
   let fechaActual = new Date();
-  let fechaFormato = fechaActual.toLocaleString('es-ES', {
-    hour12: false
-  });
+  let fechaFormato = fechaActual.toLocaleString('es-ES', { hour12: false });
 
   mostrarGastosTexto = "Fecha: " + fechaFormato + "\n";
 
+  // Ordenar los índices de arrayGastos por la cantidad de pagos, de mayor a menor
+  let indicesOrdenados = Array.from(arrayGastos.keys()).sort((a, b) => numVecesConcepto[b] - numVecesConcepto[a]);
 
-  let conteoPagosPorConcepto = [];
-
-  let indices = Array.from(arrayGastos.keys());
-
-  indices.forEach((index) => {
+  indicesOrdenados.forEach((index) => {
     let concepto = arrayGastos[index];
     let gastoPorConcepto = tiposDeGastos[index];
+    let numeroPagos = numVecesConcepto[index];
+    setTimeout(limpiarInformacion, 10000);
 
-
-
-    conteoPagosPorConcepto[concepto];
 
     if (gastoPorConcepto > 0) {
-      console.log(numVecesConcepto);
-      console.log(numVecesConcepto[index]);
-
       console.log(arrayGastos);
-      console.log(indices);
-      console.log(tiposDeGastos);
-      let gastoMedio = gastoPorConcepto / numVecesConcepto[index];
-      mostrarGastosTexto += `${concepto} ---- ${numVecesConcepto[index]} pagos ---- Gasto Medio de ${concepto}: ${gastoMedio}€ ---- ${gastoPorConcepto.toFixed(2)}€\n`;
+      let gastoMedio = gastoPorConcepto / numeroPagos;
+      mostrarGastosTexto += `${concepto} ---- ${numeroPagos} pagos ---- Gasto Medio de ${concepto}: ${gastoMedio.toFixed(2)}€ ---- ${gastoPorConcepto.toFixed(2)}€\n`;
       gastoTotal += gastoPorConcepto;
+        resultado.innerText = mostrarGastosTexto;
+
     }
   });
-  let gastoMedioTotal = gastoTotal / indices.length;
-  mostrarGastosTexto += `\nGasto final: ${gastoTotal.toFixed(2)}€\nGasto medio por concepto: ${gastoMedioTotal.toFixed(2)}€`;
-  setTimeout(limpiarInformacion, 10000);
 
+  let gastoMedioTotal = gastoTotal / arrayGastos.length;
+  mostrarGastosTexto += `\nGasto final: ${gastoTotal.toFixed(2)}€\nGasto medio por concepto: ${gastoMedioTotal.toFixed(2)}€`;
 
   resultado.innerText = mostrarGastosTexto;
   reiniciar();
@@ -168,8 +157,9 @@ function limpiarInformacion() {
   const divPrecio = document.getElementById("divAvisos");
   resultado.innerText = "";
   divPrecio.innerText = "";
-  gastoTotal = 0;
-  arrayGastos = [];
-  tiposDeGastos = [];
-  conteoPagosPorConcepto = [];
+  // Mantener los datos, solo limpiar la visualización
+  // gastoTotal = 0;
+  // arrayGastos = [];
+  // tiposDeGastos = [];
+  // conteoPagosPorConcepto = [];
 }
