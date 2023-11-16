@@ -1,84 +1,141 @@
 {
-    "conceptos": [
+  "conceptos": [
+    {
+      "id": 1,
+      "nombre": "Luz",
+      "imprescindible": true,
+      "categoria": "S_BAS"
+    },
+    {
+      "id": 2,
+      "nombre": "Agua",
+      "imprescindible": true,
+      "categoria": "S_BAS"
+    },
+    {
+      "id": 3,
+      "nombre": "Fruta",
+      "imprescindible": false,
+      "categoria": "ALI"
+    },
+    {
+      "id": 4,
+      "nombre": "Medicos",
+      "imprescindible": true,
+      "categoria": "DEP"
+    },
+    {
+      "id": 5,
+      "nombre": "Transporte",
+      "imprescindible": false,
+      "categoria": "S_BAS"
+    },
+    {
+      "id": 6,
+      "nombre": "Telefono",
+      "imprescindible": true,
+      "categoria": "S_BAS"
+    },
+    {
+      "id": 7,
+      "nombre": "Colegio",
+      "imprescindible": true,
+      "categoria": "CULT"
+    },
+    {
+      "id": 8,
+      "nombre": "Internet",
+      "imprescindible": false,
+      "categoria": "CULT"
+    },
+    {
+      "id": 9,
+      "nombre": "Comunidad",
+      "imprescindible": true,
+      "categoria": "S_BAS"
+    },
+    {
+      "id": 10,
+      "nombre": "Netflix",
+      "imprescindible": false,
+      "categoria": "OC"
+    }
+  ],
+  "registros": [
+    {
+      "id": 1,
+      "fecha": "05/2023",
+      "pagos": [
         {
-            "id": 1,
-            "nombre": "Luz",
-            "imprescindible": true,
-            "categoria": "S_BAS"
-         
+          "idConcepto": 7,
+          "importeTotal": 45.78,
+          "numPagos": 5
         },
         {
-            "id": 2,
-            "nombre": "Agua",
-            "imprescindible": true,
-            "categoria": "S_BAS"
-        },
-        {
-            "id": 3,
-            "nombre": "Fruta",
-            "imprescindible": false,
-            "categoria": "ALI"
-        },
-        {
-            "id": 4,
-            "nombre": "Medicos",
-            "imprescindible": true,
-            "categoria": "DEP"
-        },
-      
-        {
-            "id": 5,
-            "nombre": "Transporte",
-            "imprescindible": false,
-            "categoria": "S_BAS"
-        },
-        {
-            "id": 6,
-            "nombre": "Telefono",
-            "imprescindible": true,
-            "categoria": "S_BAS"
-        },
-        {
-            "id": 7,
-            "nombre": "Colegio",
-            "imprescindible": true,
-            "categoria": "CULT"
-        },
-        {
-            "id": 8,
-            "nombre": "Internet",
-            "imprescindible": false,
-            "categoria": "CULT"
-        },
-        {
-            "id": 9,
-            "nombre": "Comunidad",
-            "imprescindible": true,
-            "categoria": "S_BAS"
-        },
-        {
-            "id": 10,
-            "nombre": "Netflix",
-            "imprescindible": false,
-            "categoria": "OC"
+          "idConcepto": 2,
+          "importeTotal": 37.23,
+          "numPagos": 3
         }
-    ],
-    "registros": [
+      ]
+    },
+    {
+      "id": 2,
+      "fecha": "05/2023",
+      "pagos": [
         {
-            "id": 1,
-            "fecha": "05/2023",
-            "pagos": [
-                {
-                    "idConcepto": 7,
-                    "importeTotal": 45.78,
-                    "numPagos": 5
-                },
-                {
-                    "idConcepto": 2,
-                    "importeTotal": 37.23,
-                    "numPagos": 3
-                }
-            ]
+          "idConcepto": 7,
+          "importeTotal": 45.78,
+          "numPagos": 5
+        },
+        {
+          "idConcepto": 2,
+          "importeTotal": 37.23,
+          "numPagos": 3
         }
-    ]
+      ]
+    },
+    {
+      "id": 4,
+      "fecha": "07/2023",
+      "pagos": [
+        {
+          "idConcepto": 7,
+          "importeTotal": 45.78,
+          "numPagos": 5
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "fecha": "05/2023",
+      "pagos": []
+    },
+    {
+      "id": 6,
+      "fecha": "04/2021",
+      "pagos": []
+    },
+    {
+      "id": 7,
+      "fecha": "02/2023",
+      "pagos": []
+    },
+    {
+      "id": 8,
+      "fecha": "04/2023",
+      "pagos": []
+    },
+    {
+      "id": 9,
+      "fecha": "04/2023",
+      "pagos": [
+        []
+      ]
+    },
+    {
+      "id": 10,
+      "fecha": "04/2023",
+      "pagos": []
+    }
+  ]
 }

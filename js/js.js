@@ -45,6 +45,90 @@ function peticionPostJson(endPoint, precio) {
 
 }
 
+async function nuevoTramite(pagos) {
+  // if (event) {
+  //   event.preventDefault();
+  // }
+let fechaTramite = prompt("Ingrese la fecha del trámite (formato MM/AAAA):");
+  const url = 'http://localhost:3000/registros';
+
+  let tramite = {
+    id: tramites()?.length,
+    fecha: fechaTramite,
+    pagos: await pagos
+  };
+
+  const opciones = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(tramite)
+  };
+
+  fetch(url, opciones)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Error en la solicitud: ' + response.statusText);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Respuesta del servidor:', data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+ async function idConcepto(concepto) {
+ let idConcepto= 0;
+  const url = 'http://localhost:3000/conceptos?nombre=' + concepto;
+const options = {
+    method: "GET"
+  };
+ await fetch(url, options)
+    .then(response => response.json())
+    .then(data =>  {
+      console.log(data[0].id);
+      idConcepto=data[0].id;
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+ return idConcepto;
+}
+function creandoArrayGastos() {
+  let gastos = Array.from(document.getElementsByTagName("img"));
+  gastos.forEach((element) => {
+    arrayGastos.push(element.alt);
+    tiposDeGastos.push(0);
+    numVecesConcepto.push(0);
+  });
+  arrayGastos.sort();
+  arrayGastos.reverse();
+}
+
+
+function tramites() {
+  const url = 'http://localhost:3000/registros';
+  let arrayRegistros = [];
+
+  const options = {
+    method: "GET"
+  };
+
+  fetch(url, options)
+    .then(response => response.json())
+    .then(data => {
+      arrayRegistros = data
+
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  console.log(arrayRegistros);
+  return arrayRegistros;
+}
 function creandoArrayGastos() {
   let gastos = Array.from(document.getElementsByTagName("img"));
   gastos.forEach((element) => {
@@ -77,7 +161,7 @@ function hacerGastos(tipo, precio) {
 
 function mostrarPrecioEnDiv(tipo, precio) {
   const divPrecio = document.getElementById("divAvisos");
-  const tipoClase = tipo.replace(/\s+/g, '_');
+  const tipoClase = tipo.replace();
 
   if (ultimoConcepto) {
     divPrecio.querySelectorAll(`.${ultimoConcepto}`).forEach(el => {
@@ -92,7 +176,6 @@ function mostrarPrecioEnDiv(tipo, precio) {
 
   divPrecio.querySelectorAll(`.${tipoClase}`).forEach(el => {
     el.classList.add('resaltado');
-    setTimeout(limpiarInformacion, 10000);
 
   });
   ultimoConcepto = tipoClase;
@@ -116,47 +199,43 @@ function reiniciar() {
   creandoArrayGastos();
 }
 
-function mostrarGastos() {
+async function mostrarGastos() {
+  let arrayPagos=[];
   let resultado = document.getElementById("resultado");
   let mostrarGastosTexto = "";
   let gastoTotal = 0;
-
-
   let fechaActual = new Date();
   let fechaFormato = fechaActual.toLocaleString('es-ES', {
     hour12: false
   });
+   mostrarGastosTexto = "Fecha: " + fechaFormato + "\n";
+let conteoPagosPorConcepto = [];
+let indices = Array.from(arrayGastos.keys());
+  indices.forEach( async (index) => {
 
-  mostrarGastosTexto = "Fecha: " + fechaFormato + "\n";
-
-
-  let conteoPagosPorConcepto = [];
-
-  let indices = Array.from(arrayGastos.keys());
-
-  indices.forEach((index) => {
     let concepto = arrayGastos[index];
     let gastoPorConcepto = tiposDeGastos[index];
-
-
-
-    conteoPagosPorConcepto[concepto];
+   conteoPagosPorConcepto[concepto];
 
     if (gastoPorConcepto > 0) {
-      console.log(numVecesConcepto);
-      console.log(numVecesConcepto[index]);
-
-      console.log(arrayGastos);
-      console.log(indices);
-      console.log(tiposDeGastos);
       let gastoMedio = gastoPorConcepto / numVecesConcepto[index];
       mostrarGastosTexto += `${concepto} ---- ${numVecesConcepto[index]} pagos ---- Gasto Medio de ${concepto}: ${gastoMedio}€ ---- ${gastoPorConcepto.toFixed(2)}€\n`;
       gastoTotal += gastoPorConcepto;
+      let letPago={};
+      letPago.idConcepto =  await idConcepto(arrayGastos[index]);
+      letPago.importeTotal = gastoTotal.toFixed(2);
+      letPago.numPagos =numVecesConcepto[index];
+      arrayPagos.push(letPago);
     }
   });
+  
   let gastoMedioTotal = gastoTotal / indices.length;
   mostrarGastosTexto += `\nGasto final: ${gastoTotal.toFixed(2)}€\nGasto medio por concepto: ${gastoMedioTotal.toFixed(2)}€`;
-  setTimeout(limpiarInformacion, 10000);
+   console.log(arrayPagos);
+   await nuevoTramite(arrayPagos);
+  // setTimeout(limpiarResultado, 10000);
+  // setTimeout(limpiarInformacion, 10000);
+
 
 
   resultado.innerText = mostrarGastosTexto;
@@ -164,12 +243,11 @@ function mostrarGastos() {
 }
 
 function limpiarInformacion() {
-  let resultado = document.getElementById("resultado");
+
   const divPrecio = document.getElementById("divAvisos");
-  resultado.innerText = "";
+
   divPrecio.innerText = "";
-  gastoTotal = 0;
-  arrayGastos = [];
-  tiposDeGastos = [];
-  conteoPagosPorConcepto = [];
+  let resultado = document.getElementById("resultado");
+  resultado.innerText = "";
+
 }
