@@ -136,6 +136,17 @@
       "id": 10,
       "fecha": "04/2023",
       "pagos": []
+    },
+    {
+      "id": 11,
+      "fecha": "05/2021",
+      "pagos": [
+        {
+          "idConcepto": 3,
+          "importeTotal": "7.00",
+          "numPagos": 1
+        }
+      ]
     }
   ]
 }

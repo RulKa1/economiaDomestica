@@ -79,24 +79,23 @@ let fechaTramite = prompt("Ingrese la fecha del trámite (formato MM/AAAA):");
     .catch(error => {
       console.error('Error:', error);
     });
-}
- async function idConcepto(concepto) {
- let idConcepto= 0;
-  const url = 'http://localhost:3000/conceptos?nombre=' + concepto;
-const options = {
-    method: "GET"
-  };
- await fetch(url, options)
-    .then(response => response.json())
-    .then(data =>  {
-      console.log(data[0].id);
-      idConcepto=data[0].id;
-    })
-    .catch(error => {
+
+  }
+async function obtenerIdConcepto(nombreConcepto) {
+  const url = 'http://localhost:3000/conceptos?nombre=' + encodeURIComponent(nombreConcepto);
+  try {
+      const response = await fetch(url);
+      if (!response.ok) {
+          throw new Error('Error en la solicitud: ' + response.statusText);
+      }
+      const data = await response.json();
+      return data.length > 0 ? data[0].id : null;
+  } catch (error) {
       console.error('Error:', error);
-    });
- return idConcepto;
+      return null;
+  }
 }
+
 function creandoArrayGastos() {
   let gastos = Array.from(document.getElementsByTagName("img"));
   gastos.forEach((element) => {
@@ -156,7 +155,7 @@ function hacerGastos(tipo, precio) {
   } else {
     alert("Por favor, ingrese un importe válido mayor a cero.");
   }
-  limpiarResultado();
+   limpiarResultado();
 }
 
 function mostrarPrecioEnDiv(tipo, precio) {
@@ -200,46 +199,44 @@ function reiniciar() {
 }
 
 async function mostrarGastos() {
-  let arrayPagos=[];
+  let arrayPagos = [];
   let resultado = document.getElementById("resultado");
   let mostrarGastosTexto = "";
   let gastoTotal = 0;
   let fechaActual = new Date();
-  let fechaFormato = fechaActual.toLocaleString('es-ES', {
-    hour12: false
-  });
-   mostrarGastosTexto = "Fecha: " + fechaFormato + "\n";
-let conteoPagosPorConcepto = [];
-let indices = Array.from(arrayGastos.keys());
-  indices.forEach( async (index) => {
+  let fechaFormato = fechaActual.toLocaleString('es-ES', { hour12: false });
+  mostrarGastosTexto = "Fecha: " + fechaFormato + "\n";
 
+  let indices = Array.from(arrayGastos.keys());
+
+  for (let index of indices) {
     let concepto = arrayGastos[index];
     let gastoPorConcepto = tiposDeGastos[index];
-   conteoPagosPorConcepto[concepto];
 
     if (gastoPorConcepto > 0) {
-      let gastoMedio = gastoPorConcepto / numVecesConcepto[index];
-      mostrarGastosTexto += `${concepto} ---- ${numVecesConcepto[index]} pagos ---- Gasto Medio de ${concepto}: ${gastoMedio}€ ---- ${gastoPorConcepto.toFixed(2)}€\n`;
-      gastoTotal += gastoPorConcepto;
-      let letPago={};
-      letPago.idConcepto =  await idConcepto(arrayGastos[index]);
-      letPago.importeTotal = gastoTotal.toFixed(2);
-      letPago.numPagos =numVecesConcepto[index];
-      arrayPagos.push(letPago);
+        let numPagos = numVecesConcepto[index];
+        let gastoMedio = gastoPorConcepto / numPagos;
+        mostrarGastosTexto += `${concepto} ---- ${numPagos} pagos ---- Gasto Medio de ${concepto}: ${gastoMedio.toFixed(2)}€ ---- Total: ${gastoPorConcepto.toFixed(2)}€\n`;
+
+        let idDelConcepto = await obtenerIdConcepto(concepto); 
+        arrayPagos.push({
+            idConcepto: idDelConcepto,
+            importeTotal: gastoPorConcepto.toFixed(2),
+            numPagos: numPagos
+        });
     }
-  });
-  
+}
+
   let gastoMedioTotal = gastoTotal / indices.length;
   mostrarGastosTexto += `\nGasto final: ${gastoTotal.toFixed(2)}€\nGasto medio por concepto: ${gastoMedioTotal.toFixed(2)}€`;
-   console.log(arrayPagos);
-   await nuevoTramite(arrayPagos);
-  // setTimeout(limpiarResultado, 10000);
-  // setTimeout(limpiarInformacion, 10000);
-
-
 
   resultado.innerText = mostrarGastosTexto;
-  reiniciar();
+  
+    nuevoTramite(arrayPagos);
+  
+  //    setTimeout(limpiarResultado, 10000);
+  //  setTimeout(limpiarInformacion, 10000);
+  
 }
 
 function limpiarInformacion() {
