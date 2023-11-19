@@ -19,6 +19,7 @@ function peticionGetJson(precio) {
       console.error('Error:', error);
     });
 }
+
 function peticionPostJson(endPoint, precio) {
   const url = 'http://localhost:3000' + endPoint;
   const opciones = {
@@ -37,9 +38,7 @@ function peticionPostJson(endPoint, precio) {
       console.error('Error:', error);
     });}
     async function nuevoTramite(pagos) {
-  // if (event) {
-  //   event.preventDefault();
-  // }
+
 let fechaTramite = prompt("Ingrese la fecha del trámite (formato MM/AAAA):");
   const url = 'http://localhost:3000/registros';
 let tramite = {
@@ -67,6 +66,7 @@ fetch(url, opciones)
     .catch(error => {
       console.error('Error:', error);
     });
+
   }
   async function obtenerIdConcepto(nombreConcepto) {
   const url = 'http://localhost:3000/conceptos?nombre=' + encodeURIComponent(nombreConcepto);
@@ -135,6 +135,7 @@ function hacerGastos(tipo, precio) {
     alert("Por favor, ingrese un importe válido mayor a cero.");
   }
    limpiarResultado();
+   
 }
 function mostrarPrecioEnDiv(tipo, precio) {
   const divPrecio = document.getElementById("divAvisos");
@@ -165,13 +166,25 @@ function reiniciar() {
   gasto = 0;
   arrayGastos = [];
   tiposDeGastos = [];
-  creandoArrayGastos();
+  numVecesConcepto = [];
+
+  // Repoblar arrayGastos y reiniciar tiposDeGastos y numVecesConcepto
+  let gastos = Array.from(document.getElementsByTagName("img"));
+  gastos.forEach((element) => {
+    arrayGastos.push(element.alt);
+    tiposDeGastos.push(0);
+    numVecesConcepto.push(0);
+  });
+
+  arrayGastos.sort();
+  arrayGastos.reverse();
 }
+
+
 async function mostrarGastos() {
   let arrayPagos = [];
   let resultado = document.getElementById("resultado");
   let mostrarGastosTexto = "";
-  let gastoTotal = 0;
   let fechaActual = new Date();
   let fechaFormato = fechaActual.toLocaleString('es-ES', { hour12: false });
   mostrarGastosTexto = "Fecha: " + fechaFormato + "\n";
@@ -179,16 +192,19 @@ async function mostrarGastos() {
   // Ordenar los índices por el número de veces que cada concepto ha sido gastado, de mayor a menor
   let indices = Array.from(arrayGastos.keys()).sort((a, b) => numVecesConcepto[b] - numVecesConcepto[a]);
 
+  let gastoTotal = 0;
+  let pagosTotales = 0;
+
   for (let index of indices) {
     let concepto = arrayGastos[index];
     let gastoPorConcepto = tiposDeGastos[index];
     let numPagos = numVecesConcepto[index];
 
     if (gastoPorConcepto > 0) {
-      let gastoMedio = gastoPorConcepto / numPagos;
-      mostrarGastosTexto += `${concepto} ---- ${numPagos} pagos ---- Gasto Medio de ${concepto}: ${gastoMedio.toFixed(2)}€ ---- Total: ${gastoPorConcepto.toFixed(2)}€\n`;
+      let gastoMedioPorConcepto = gastoPorConcepto / numPagos;
+      mostrarGastosTexto += `${concepto} ---- ${numPagos} pagos ---- Gasto Medio de ${concepto}: ${gastoMedioPorConcepto.toFixed(2)}€ ---- Total: ${gastoPorConcepto.toFixed(2)}€\n`;
 
-      let idDelConcepto = await obtenerIdConcepto(concepto); 
+      let idDelConcepto = await obtenerIdConcepto(concepto);
       arrayPagos.push({
         idConcepto: idDelConcepto,
         importeTotal: gastoPorConcepto.toFixed(2),
@@ -196,16 +212,52 @@ async function mostrarGastos() {
       });
 
       gastoTotal += gastoPorConcepto;
+      pagosTotales += numPagos;
     }
   }
 
-  let gastoMedioTotal = gastoTotal / indices.length;
-  mostrarGastosTexto += `\nGasto final: ${gastoTotal.toFixed(2)}€\nGasto medio por concepto: ${gastoMedioTotal.toFixed(2)}€`;
-  resultado.innerText = mostrarGastosTexto;
+  let gastoMedioTotal = pagosTotales > 0 ? gastoTotal / pagosTotales : 0;
+  mostrarGastosTexto += `\nGasto final: ${gastoTotal.toFixed(2)}€\nGasto medio total: ${gastoMedioTotal.toFixed(2)}€/pago`;
 
-   await nuevoTramite(arrayPagos);
+  resultado.innerText = mostrarGastosTexto;
   // setTimeout(limpiarResultado, 10000);
   // setTimeout(limpiarInformacion, 10000);
+  await nuevoTramite(arrayPagos);
+  // reiniciar();
+  mostrarVentanaEmergente();
+  setTimeout(() => {
+    limpiarResultado();
+    limpiarInformacion();
+    reiniciar();
+  }, 10000);
+
+}
+
+
+function mostrarVentanaEmergente() {
+  let ventana = window.open("", "Pagos Realizados", "width=600,height=400");
+  ventana.document.title = "Detalle de Pagos";
+  let contenido = "<h1>Pagos Realizados</h1>";
+  const descripciones = {
+    luz: "un gasto imprescindible de categoría Servicios Básicos<hr>",
+    agua: "un gasto imprescindible de categoría Servicios Básicos<hr>",
+    fruta: "un gasto prescindible de categoría Alimentos<hr>",
+    medicos: "un gasto imprescindible de categoría DEP<hr>",
+    transporte: "un gasto prescindible de categoría Servicios Básicos<hr>",
+    telefono: "un gasto imprescindible de categoría Servicios Básicos<hr>",
+    colegio: "un gasto prescindible de categoría Cultura<hr>",
+    internet: "un gasto imprescindible de categoría Servicios Básicos<hr>",
+    comunidad: "un gasto imprescindible de categoría Servicios Básicos<hr>",
+    netflix: "un gasto prescindible de categoría Ocio<hr>",
+  };
+  arrayGastos.forEach((concepto, index) => {
+    if (tiposDeGastos[index] > 0 && descripciones[concepto.toLowerCase()]) {
+      contenido += `<p>${concepto}</p> es ${descripciones[concepto.toLowerCase()]}.<br>`;
+    } 
+  });
+ 
+  ventana.document.body.innerHTML = contenido;
+  reiniciar();
 }
 
 

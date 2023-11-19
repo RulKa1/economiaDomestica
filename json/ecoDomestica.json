@@ -46,7 +46,7 @@
       "id": 8,
       "nombre": "Internet",
       "imprescindible": false,
-      "categoria": "CULT"
+      "categoria": "S_BAS"
     },
     {
       "id": 9,
@@ -334,6 +334,258 @@
           "numPagos": 1
         }
       ]
+    },
+    {
+      "fecha": "11/2078",
+      "pagos": [
+        {
+          "idConcepto": 2,
+          "importeTotal": "199.00",
+          "numPagos": 3
+        },
+        {
+          "idConcepto": 1,
+          "importeTotal": "35.00",
+          "numPagos": 2
+        },
+        {
+          "idConcepto": 4,
+          "importeTotal": "5.00",
+          "numPagos": 1
+        }
+      ],
+      "id": 29
+    },
+    {
+      "fecha": "04/2023",
+      "pagos": [
+        {
+          "idConcepto": 2,
+          "importeTotal": "5.00",
+          "numPagos": 1
+        }
+      ],
+      "id": 30
+    },
+    {
+      "fecha": "01/2011",
+      "pagos": [
+        {
+          "idConcepto": 2,
+          "importeTotal": "5.00",
+          "numPagos": 1
+        }
+      ],
+      "id": 31
+    },
+    {
+      "fecha": "01/2021",
+      "pagos": [
+        {
+          "idConcepto": 4,
+          "importeTotal": "7.00",
+          "numPagos": 1
+        },
+        {
+          "idConcepto": 2,
+          "importeTotal": "4.00",
+          "numPagos": 1
+        }
+      ],
+      "id": 32
+    },
+    {
+      "fecha": null,
+      "pagos": [
+        {
+          "idConcepto": 3,
+          "importeTotal": "15.00",
+          "numPagos": 1
+        }
+      ],
+      "id": 33
+    },
+    {
+      "fecha": null,
+      "pagos": [
+        {
+          "idConcepto": 5,
+          "importeTotal": "14.00",
+          "numPagos": 1
+        }
+      ],
+      "id": 34
+    },
+    {
+      "fecha": "05/2025",
+      "pagos": [
+        {
+          "idConcepto": 3,
+          "importeTotal": "14.00",
+          "numPagos": 1
+        }
+      ],
+      "id": 35
+    },
+    {
+      "fecha": "05/2025",
+      "pagos": [
+        {
+          "idConcepto": 3,
+          "importeTotal": "45.00",
+          "numPagos": 1
+        }
+      ],
+      "id": 36
+    },
+    {
+      "fecha": "05/2027",
+      "id": 37
+    },
+    {
+      "fecha": "42",
+      "id": 38
+    },
+    {
+      "fecha": null,
+      "pagos": [
+        {
+          "idConcepto": 9,
+          "importeTotal": "75.00",
+          "numPagos": 1
+        }
+      ],
+      "id": 39
+    },
+    {
+      "fecha": null,
+      "pagos": [
+        {
+          "idConcepto": 9,
+          "importeTotal": "75.00",
+          "numPagos": 1
+        }
+      ],
+      "id": 40
+    },
+    {
+      "fecha": null,
+      "pagos": [
+        {
+          "idConcepto": 9,
+          "importeTotal": "75.00",
+          "numPagos": 1
+        }
+      ],
+      "id": 41
+    },
+    {
+      "fecha": null,
+      "pagos": [
+        {
+          "idConcepto": 9,
+          "importeTotal": "75.00",
+          "numPagos": 1
+        }
+      ],
+      "id": 42
+    },
+    {
+      "fecha": "01/1978",
+      "pagos": [
+        {
+          "idConcepto": 2,
+          "importeTotal": "18.00",
+          "numPagos": 3
+        },
+        {
+          "idConcepto": 3,
+          "importeTotal": "154.00",
+          "numPagos": 2
+        },
+        {
+          "idConcepto": 4,
+          "importeTotal": "45.00",
+          "numPagos": 1
+        }
+      ],
+      "id": 43
+    },
+    {
+      "fecha": "02/2025",
+      "pagos": [
+        {
+          "idConcepto": 1,
+          "importeTotal": "45.00",
+          "numPagos": 1
+        }
+      ],
+      "id": 44
+    },
+    {
+      "fecha": "05/2025",
+      "pagos": [
+        {
+          "idConcepto": 1,
+          "importeTotal": "28.00",
+          "numPagos": 3
+        },
+        {
+          "idConcepto": 2,
+          "importeTotal": "84.00",
+          "numPagos": 2
+        },
+        {
+          "idConcepto": 3,
+          "importeTotal": "15.00",
+          "numPagos": 1
+        }
+      ],
+      "id": 45
+    },
+    {
+      "fecha": "05/2025",
+      "pagos": [
+        {
+          "idConcepto": 2,
+          "importeTotal": "5.00",
+          "numPagos": 1
+        }
+      ],
+      "id": 46
+    },
+    {
+      "fecha": "01/2021",
+      "pagos": [
+        {
+          "idConcepto": 3,
+          "importeTotal": "4.00",
+          "numPagos": 1
+        }
+      ],
+      "id": 47
+    },
+    {
+      "fecha": "05/2024",
+      "pagos": [
+        {
+          "idConcepto": 3,
+          "importeTotal": "4.00",
+          "numPagos": 1
+        }
+      ],
+      "id": 48
+    },
+    {
+      "fecha": "01/2021",
+      "pagos": [
+        {
+          "idConcepto": 4,
+          "importeTotal": "45.00",
+          "numPagos": 1
+        }
+      ],
+      "id": 49
     }
   ]
 }
