@@ -3,6 +3,7 @@ var tiposDeGastos = [];
 var gasto = 0;
 var ultimoConcepto = "";
 var numVecesConcepto = [];
+
 function peticionGetJson(precio) {
   const url = 'http://localhost:3000/conceptos';
 
@@ -36,24 +37,25 @@ function peticionPostJson(endPoint, precio) {
     })
     .catch(error => {
       console.error('Error:', error);
-    });}
-    async function nuevoTramite(pagos) {
+    });
+}
+async function nuevoTramite(pagos) {
 
-let fechaTramite = prompt("Ingrese la fecha del trámite (formato MM/AAAA):");
+  let fechaTramite = prompt("Ingrese la fecha del trámite (formato MM/AAAA):");
   const url = 'http://localhost:3000/registros';
-let tramite = {
+  let tramite = {
     //  id: tramites()?.length,
     fecha: fechaTramite,
     pagos: await pagos
   };
-    const opciones = {
+  const opciones = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(tramite)
   };
-fetch(url, opciones)
+  fetch(url, opciones)
     .then(response => {
       if (!response.ok) {
         throw new Error('Error en la solicitud: ' + response.statusText);
@@ -66,22 +68,22 @@ fetch(url, opciones)
     .catch(error => {
       console.error('Error:', error);
     });
-
-  }
-  async function obtenerIdConcepto(nombreConcepto) {
+}
+async function obtenerIdConcepto(nombreConcepto) {
   const url = 'http://localhost:3000/conceptos?nombre=' + encodeURIComponent(nombreConcepto);
   try {
-      const response = await fetch(url);
-      if (!response.ok) {
-          throw new Error('Error en la solicitud: ' + response.statusText);
-      }
-      const data = await response.json();
-      return data.length > 0 ? data[0].id : null;
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error('Error en la solicitud: ' + response.statusText);
+    }
+    const data = await response.json();
+    return data.length > 0 ? data[0].id : null;
   } catch (error) {
-      console.error('Error:', error);
-      return null;
+    console.error('Error:', error);
+    return null;
   }
 }
+
 function creandoArrayGastos() {
   let gastos = Array.from(document.getElementsByTagName("img"));
   gastos.forEach((element) => {
@@ -92,6 +94,7 @@ function creandoArrayGastos() {
   arrayGastos.sort();
   arrayGastos.reverse();
 }
+
 function tramites() {
   const url = 'http://localhost:3000/registros';
   let arrayRegistros = [];
@@ -111,6 +114,7 @@ function tramites() {
   console.log(arrayRegistros);
   return arrayRegistros;
 }
+
 function creandoArrayGastos() {
   let gastos = Array.from(document.getElementsByTagName("img"));
   gastos.forEach((element) => {
@@ -121,6 +125,7 @@ function creandoArrayGastos() {
   arrayGastos.sort();
   arrayGastos.reverse();
 }
+
 function hacerGastos(tipo, precio) {
   var precio = prompt("Ingrese el importe del pago para " + tipo.alt + " en €:");
   if (precio !== null && !isNaN(parseFloat(precio)) && parseFloat(precio) > 0) {
@@ -134,9 +139,10 @@ function hacerGastos(tipo, precio) {
   } else {
     alert("Por favor, ingrese un importe válido mayor a cero.");
   }
-   limpiarResultado();
-   
+  limpiarResultado();
+
 }
+
 function mostrarPrecioEnDiv(tipo, precio) {
   const divPrecio = document.getElementById("divAvisos");
   const tipoClase = tipo.replace();
@@ -155,41 +161,40 @@ function mostrarPrecioEnDiv(tipo, precio) {
   });
   ultimoConcepto = tipoClase;
 }
+
 function gasto1(gastando) {
   gasto += gastando;
 }
+
 function limpiarResultado() {
   let resultado = document.getElementById("resultado");
   resultado.innerText = "";
 }
+
 function reiniciar() {
   gasto = 0;
   arrayGastos = [];
   tiposDeGastos = [];
   numVecesConcepto = [];
-
-  // Repoblar arrayGastos y reiniciar tiposDeGastos y numVecesConcepto
   let gastos = Array.from(document.getElementsByTagName("img"));
   gastos.forEach((element) => {
     arrayGastos.push(element.alt);
     tiposDeGastos.push(0);
     numVecesConcepto.push(0);
   });
-
   arrayGastos.sort();
   arrayGastos.reverse();
 }
-
-
 async function mostrarGastos() {
   let arrayPagos = [];
   let resultado = document.getElementById("resultado");
   let mostrarGastosTexto = "";
   let fechaActual = new Date();
-  let fechaFormato = fechaActual.toLocaleString('es-ES', { hour12: false });
+  let fechaFormato = fechaActual.toLocaleString('es-ES', {
+    hour12: false
+  });
   mostrarGastosTexto = "Fecha: " + fechaFormato + "\n";
 
-  // Ordenar los índices por el número de veces que cada concepto ha sido gastado, de mayor a menor
   let indices = Array.from(arrayGastos.keys()).sort((a, b) => numVecesConcepto[b] - numVecesConcepto[a]);
 
   let gastoTotal = 0;
@@ -220,11 +225,9 @@ async function mostrarGastos() {
   mostrarGastosTexto += `\nGasto final: ${gastoTotal.toFixed(2)}€\nGasto medio total: ${gastoMedioTotal.toFixed(2)}€/pago`;
 
   resultado.innerText = mostrarGastosTexto;
-  // setTimeout(limpiarResultado, 10000);
-  // setTimeout(limpiarInformacion, 10000);
-  await nuevoTramite(arrayPagos);
-  // reiniciar();
-  mostrarVentanaEmergente();
+
+ await nuevoTramite(arrayPagos); // si se comenta la siguiente linea de codigo, si que va a mostrar los gastos. (Es debido al error Indicado)
+   mostrarVentanaEmergente();
   setTimeout(() => {
     limpiarResultado();
     limpiarInformacion();
@@ -253,9 +256,9 @@ function mostrarVentanaEmergente() {
   arrayGastos.forEach((concepto, index) => {
     if (tiposDeGastos[index] > 0 && descripciones[concepto.toLowerCase()]) {
       contenido += `<p>${concepto}</p> es ${descripciones[concepto.toLowerCase()]}.<br>`;
-    } 
+    }
   });
- 
+
   ventana.document.body.innerHTML = contenido;
   reiniciar();
 }
